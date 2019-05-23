@@ -12958,11 +12958,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\workspace\\csharp\\StudentExercises\\StudentExercisesMVC\\StudentExercisesMVC\\StudentExercisesMVC.csproj",
+      "projectUniqueName": "C:\\workspace\\csharp\\StudentExercisesMVC\\StudentExercisesMVC\\StudentExercisesMVC.csproj",
       "projectName": "StudentExercisesMVC",
-      "projectPath": "C:\\workspace\\csharp\\StudentExercises\\StudentExercisesMVC\\StudentExercisesMVC\\StudentExercisesMVC.csproj",
+      "projectPath": "C:\\workspace\\csharp\\StudentExercisesMVC\\StudentExercisesMVC\\StudentExercisesMVC.csproj",
       "packagesPath": "C:\\Users\\Niall\\.nuget\\packages\\",
-      "outputPath": "C:\\workspace\\csharp\\StudentExercises\\StudentExercisesMVC\\StudentExercisesMVC\\obj\\",
+      "outputPath": "C:\\workspace\\csharp\\StudentExercisesMVC\\StudentExercisesMVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
