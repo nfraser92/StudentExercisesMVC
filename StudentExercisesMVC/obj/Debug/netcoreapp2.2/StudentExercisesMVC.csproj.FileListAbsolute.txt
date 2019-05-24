@@ -73,3 +73,13 @@ C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp
 C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Create.g.cshtml.cs
 C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Edit.g.cshtml.cs
 C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Delete.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Exercises\Index.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Exercises\Details.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Exercises\Create.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Exercises\Edit.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Exercises\Delete.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Cohort\Index.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Cohort\Details.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Cohort\Create.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Cohort\Edit.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Cohort\Delete.g.cshtml.cs

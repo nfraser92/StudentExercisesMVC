@@ -18,7 +18,7 @@ namespace StudentExercisesMVC.Models
 
         [Required]
         [StringLength(55)]
-        [Display(Name = "exercise Language")]
+        [Display(Name = "Exercise Language")]
         public string ExerciseLanguage { get; set; }
 
     }
