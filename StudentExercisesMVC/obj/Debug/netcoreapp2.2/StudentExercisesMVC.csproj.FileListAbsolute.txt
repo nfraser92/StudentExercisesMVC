@@ -71,3 +71,5 @@ C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp
 C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Index.g.cshtml.cs
 C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Details.g.cshtml.cs
 C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Create.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Edit.g.cshtml.cs
+C:\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Instructors\Delete.g.cshtml.cs

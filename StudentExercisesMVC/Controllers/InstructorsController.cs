@@ -138,17 +138,40 @@ namespace StudentExercisesMVC.Controllers
         // GET: Instructors/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            InstructorEditViewModel model = new InstructorEditViewModel(Connection, id);
+            return View(model);
         }
 
         // POST: Instructors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, [FromForm] InstructorEditViewModel model)
         {
             try
             {
                 // TODO: Add update logic here
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @" UPDATE Instructor
+                                             SET FirstName = @FirstName,
+                                                 LastName = @LastName,
+                                                 SlackHandle = @SlackHandle,
+                                                 Speciality = @Speciality,
+                                                 CohortId = @CohortId
+                                             WHERE Id = @id";
+                        cmd.Parameters.Add(new SqlParameter("@FirstName", model.Instructor.FirstName));
+                        cmd.Parameters.Add(new SqlParameter("@LastName", model.Instructor.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@SlackHandle", model.Instructor.SlackHandle));
+                        cmd.Parameters.Add(new SqlParameter("@Speciality", model.Instructor.Speciality));
+                        cmd.Parameters.Add(new SqlParameter("@CohortId", model.Instructor.CohortId));
+
+                        cmd.Parameters.Add(new SqlParameter("@id", id));
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                    }
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -161,18 +184,64 @@ namespace StudentExercisesMVC.Controllers
         // GET: Instructors/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT i.Id,
+                                            i.FirstName,
+                                            i.LastName,
+                                            i.SlackHandle,
+                                            i.Speciality,
+                                            i.CohortId
+                                        FROM Instructor i
+                                        WHERE i.Id = @id";
+
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    Instructor instructor = new Instructor();
+
+                    while (reader.Read())
+                    {
+                        instructor.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        instructor.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                        instructor.LastName = reader.GetString(reader.GetOrdinal("LastName"));
+                        instructor.SlackHandle = reader.GetString(reader.GetOrdinal("SlackHandle"));
+                        instructor.Speciality = reader.GetString(reader.GetOrdinal("Speciality"));
+                        instructor.CohortId = reader.GetInt32(reader.GetOrdinal("CohortId"));
+                    };
+
+
+                    reader.Close();
+
+                    return View(instructor);
+                }
+            }
         }
 
-        // POST: Instructors/Delete/5
+        // POST: Students/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Instructor instructor)
         {
             try
             {
                 // TODO: Add delete logic here
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"DELETE FROM Instructor WHERE Id = @id";
+                        cmd.Parameters.Add(new SqlParameter("@id", id));
 
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch

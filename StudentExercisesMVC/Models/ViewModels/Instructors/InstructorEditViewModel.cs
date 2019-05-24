@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace StudentExercisesMVC.Models.ViewModels
 {
-    public class StudentEditViewModel
+    public class InstructorEditViewModel
     {
-        public Student Student { get; set; } = new Student();
+        public Instructor Instructor { get; set; } = new Instructor();
 
         public List<SelectListItem> Cohorts;
 
         public SqlConnection Connection;
 
-        public StudentEditViewModel()
+        public InstructorEditViewModel()
         {
 
         }
 
-        public StudentEditViewModel(SqlConnection connection, int id)
+        public InstructorEditViewModel(SqlConnection connection, int id)
         {
             Connection = connection;
             GetAllCohorts(id);
@@ -61,19 +61,20 @@ namespace StudentExercisesMVC.Models.ViewModels
 
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @" SELECT s.Id, s.FirstName, s.LastName, s.SlackHandle, s.CohortId
-                                         FROM Student s
-                                         WHERE s.Id = @id";
+                    cmd.CommandText = @" SELECT i.Id, i.FirstName, i.LastName, i.SlackHandle, i.Speciality, i.CohortId
+                                         FROM Instructor i
+                                         WHERE i.Id = @id";
                     cmd.Parameters.Add(new SqlParameter("@id", id));
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        Student.Id = reader.GetInt32(reader.GetOrdinal("Id"));
-                        Student.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
-                        Student.LastName = reader.GetString(reader.GetOrdinal("LastName"));
-                        Student.SlackHandle = reader.GetString(reader.GetOrdinal("SlackHandle"));
-                        Student.CohortId = reader.GetInt32(reader.GetOrdinal("CohortId"));
+                        Instructor.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        Instructor.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                        Instructor.LastName = reader.GetString(reader.GetOrdinal("LastName"));
+                        Instructor.SlackHandle = reader.GetString(reader.GetOrdinal("SlackHandle"));
+                        Instructor.Speciality = reader.GetString(reader.GetOrdinal("Speciality"));
+                        Instructor.CohortId = reader.GetInt32(reader.GetOrdinal("CohortId"));
                     }
 
                     reader.Close();
