@@ -7,5 +7,6 @@ namespace StudentExercisesMVC.Repositories
 {
     public class StudentRepository
     {
+
     }
 }
