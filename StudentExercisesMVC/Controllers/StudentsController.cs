@@ -56,23 +56,8 @@ namespace StudentExercisesMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([FromForm] StudentCreateViewModel model)
         {
-            using (SqlConnection conn = Connection)
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"INSERT INTO Student (FirstName, LastName, SlackHandle, CohortId)
-                                        OUTPUT INSERTED.Id
-                                        VALUES (@FirstName, @LastName, @SlackHandle, @CohortId)";
-                    cmd.Parameters.Add(new SqlParameter("@FirstName", model.Student.FirstName));
-                    cmd.Parameters.Add(new SqlParameter("@LastName", model.Student.LastName));
-                    cmd.Parameters.Add(new SqlParameter("@SlackHandle", model.Student.SlackHandle));
-                    cmd.Parameters.Add(new SqlParameter("@CohortId", model.Student.CohortId));
-
-                    int newId = (int)cmd.ExecuteScalar();
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+            var student = StudentsRepository.CreateStudent(model.Student);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Students/Edit/5
@@ -87,36 +72,8 @@ namespace StudentExercisesMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, [FromForm] StudentEditViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
-                using (SqlConnection conn = Connection)
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = conn.CreateCommand())
-                    {
-                        cmd.CommandText = @" UPDATE Student
-                                             SET FirstName = @FirstName,
-                                                LastName = @LastName,
-                                                SlackHandle = @SlackHandle,
-                                                CohortId = @CohortId
-                                             WHERE Id = @id";
-                        cmd.Parameters.Add(new SqlParameter("@FirstName", model.Student.FirstName));
-                        cmd.Parameters.Add(new SqlParameter("@LastName", model.Student.LastName));
-                        cmd.Parameters.Add(new SqlParameter("@SlackHandle", model.Student.SlackHandle));
-                        cmd.Parameters.Add(new SqlParameter("@CohortId", model.Student.CohortId));
-                        cmd.Parameters.Add(new SqlParameter("@id", id));
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                    }
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var editedStudent = StudentsRepository.EditStudent(id, model.Student);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Students/Delete/5

@@ -103,5 +103,53 @@ namespace StudentExercisesMVC.Repositories
                 }
             }
         }
+
+        public static Student CreateStudent(Student student)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Student (FirstName, LastName, SlackHandle, CohortId)
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@FirstName, @LastName, @SlackHandle, @CohortId)";
+                    cmd.Parameters.Add(new SqlParameter("@FirstName", student.FirstName));
+                    cmd.Parameters.Add(new SqlParameter("@LastName", student.LastName));
+                    cmd.Parameters.Add(new SqlParameter("@SlackHandle", student.SlackHandle));
+                    cmd.Parameters.Add(new SqlParameter("@CohortId", student.CohortId));
+
+                    int newId = (int)cmd.ExecuteScalar();
+                    return student;
+                }
+            }
+        }
+
+        public static Student EditStudent(int id, Student student)
+        {
+            
+                // TODO: Add update logic here
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @" UPDATE Student
+                                             SET FirstName = @FirstName,
+                                                LastName = @LastName,
+                                                SlackHandle = @SlackHandle,
+                                                CohortId = @CohortId
+                                             WHERE Id = @id";
+                        cmd.Parameters.Add(new SqlParameter("@FirstName", student.FirstName));
+                        cmd.Parameters.Add(new SqlParameter("@LastName", student.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@SlackHandle", student.SlackHandle));
+                        cmd.Parameters.Add(new SqlParameter("@CohortId", student.CohortId));
+                        cmd.Parameters.Add(new SqlParameter("@id", id));
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                    }
+                }
+                return student;
+            }
+        }
     }
-}
