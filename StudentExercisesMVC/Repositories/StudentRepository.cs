@@ -151,5 +151,23 @@ namespace StudentExercisesMVC.Repositories
                 }
                 return student;
             }
+
+        public static void DeleteStudent(int id)
+        {
+            // TODO: Add delete logic here
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM StudentExercise WHERE Id = @id; DELETE FROM Student WHERE Id = @id";
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
+}
+
+
