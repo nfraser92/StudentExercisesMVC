@@ -72,7 +72,7 @@ namespace StudentExercisesMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, [FromForm] StudentEditViewModel model)
         {
-            var editedStudent = StudentsRepository.EditStudent(id, model.Student);
+            StudentsRepository.EditStudent(id, model.Student);
             return RedirectToAction(nameof(Index));
         }
 

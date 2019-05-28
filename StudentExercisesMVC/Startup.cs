@@ -48,6 +48,7 @@ namespace StudentExercisesMVC
             }
 
             StudentsRepository.SetConfig(Configuration);
+            CohortsRepository.SetConfig(Configuration);
             
 
 
